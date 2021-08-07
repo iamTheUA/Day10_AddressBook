@@ -1,11 +1,37 @@
 package Day10_AddressBook;
 
+import java.util.Scanner;
+
 public class AddressBook {
+	Person p = new Person();
 
 	public static void main(String[] args) {
-	
+
+	}
+
+	public static void getInfo(Person p1) {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter First name: ");
+		String str = sc.next();
+		p1.setfName(str);
+		System.out.println("Enter Last name: ");
+		str = sc.next();
+		p1.setlName(str);
+		System.out.println("Enter Address: ");
+		p1.setAddress(sc.next());
+		System.out.println("Enter City: ");
+		p1.setCity(sc.next());
+		System.out.println("Enter State: ");
+		p1.setState(sc.next());
+		System.out.println("Enter Zip: ");
+		p1.setZip(sc.nextInt());
+		System.out.println("Enter Phone Number: ");
+		p1.setpNumber(sc.nextLong());
+		System.out.println("Enter Email: ");
+		p1.setEmail(sc.next());
 	}
 }
+
 class Person {
 	String fName;
 	String lName;
