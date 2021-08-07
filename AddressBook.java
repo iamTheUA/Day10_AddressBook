@@ -1,17 +1,26 @@
 package Day10_AddressBook;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class AddressBook {
-	Person p = new Person();
-	static Person[] group = new Person[5];
+
+	static ArrayList<Person> contact = new ArrayList<Person>();
+	static Scanner scan = new Scanner(System.in);
+	static int totalObj = 0;
 
 	public static void main(String[] args) {
-		for (int i = 0; i < 5; i++) {
-			System.out.println("Enter Contact of Person" + (i + 1));
-			group[i] = new Person();
-			getInfo(group[i]);
+		int ans = 1;
+		while (ans == 1) {
+			System.out.println("Enter Contact");
+			Person p = new Person();
+			getInfo(p);
+			contact.add(p);
+			System.out.println("Want to Add more? Enter 1 for Yes, 2 for No");
+			ans = scan.nextInt();
+			totalObj += 1;
 		}
+
 		System.out.println("Want to Edit? Enter 1 for Yes, 2 for No");
 		Scanner sc = new Scanner(System.in);
 		if (sc.nextInt() == 1) {
@@ -29,18 +38,12 @@ public class AddressBook {
 		Scanner sc = new Scanner(System.in);
 		String firstName = sc.next();
 		int flag = 0;
-		for (int i = 0; i < 5; i++) {
-			System.out.println(group[i].fName);
-			if (firstName.equals(group[i].fName)) {
-				group[i].address = null;
-				group[i].city = null;
-				group[i].email = null;
-				group[i].fName = null;
-				group[i].lName = null;
-				group[i].pNumber = 0;
-				group[i].state = null;
-				group[i].zip = 0;
+		for (int i = 0; i < totalObj; i++) {
+			if (firstName.equals(contact.get(i).fName)) {
+				contact.remove(i);
+				totalObj -= 1;
 				System.out.println("Deleted..!!");
+				flag = 1;
 			}
 		}
 		if (flag == 0) {
@@ -53,11 +56,11 @@ public class AddressBook {
 		Scanner sc = new Scanner(System.in);
 		String firstName = sc.next();
 		int flag = 0;
-		for (int i = 0; i < 5; i++) {
-			System.out.println(group[i].fName);
-			if (firstName.equals(group[i].fName)) {
+		for (int i = 0; i < totalObj; i++) {
+			System.out.println(contact.get(i).fName);
+			if (firstName.equals(contact.get(i).fName)) {
 				System.out.println("\nEdit---->");
-				getInfo(group[i]);
+				getInfo(contact.get(i));
 				flag = 1;
 				break;
 			}
