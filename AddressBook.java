@@ -4,9 +4,38 @@ import java.util.Scanner;
 
 public class AddressBook {
 	Person p = new Person();
+	static Person[] group = new Person[5];
 
 	public static void main(String[] args) {
+		for (int i = 0; i < 5; i++) {
+			System.out.println("Enter Contact of Person" + (i + 1));
+			group[i] = new Person();
+			getInfo(group[i]);
+		}
+		System.out.println("Want to Edit? Enter 1 for Yes, 2 for No");
+		Scanner sc = new Scanner(System.in);
+		if (sc.nextInt() == 1) {
+			searchPerson();
+		}
+	}
 
+	public static void searchPerson() {
+		System.out.println("\nEnter Fisrt Name: ");
+		Scanner sc = new Scanner(System.in);
+		String firstName = sc.next();
+		int flag = 0;
+		for (int i = 0; i < 5; i++) {
+			System.out.println(group[i].fName);
+			if (firstName.equals(group[i].fName)) {
+				System.out.println("\nEdit---->");
+				getInfo(group[i]);
+				flag = 1;
+				break;
+			}
+		}
+		if (flag == 0) {
+			System.out.println("Couldn't Find it!");
+		}
 	}
 
 	public static void getInfo(Person p1) {
