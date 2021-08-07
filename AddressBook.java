@@ -17,6 +17,35 @@ public class AddressBook {
 		if (sc.nextInt() == 1) {
 			searchPerson();
 		}
+
+		System.out.println("Want to Delete? Enter 1 for Yes, 2 for No");
+		if (sc.nextInt() == 1) {
+			deletePerson();
+		}
+	}
+
+	public static void deletePerson() {
+		System.out.println("\nEnter Fisrt Name: ");
+		Scanner sc = new Scanner(System.in);
+		String firstName = sc.next();
+		int flag = 0;
+		for (int i = 0; i < 5; i++) {
+			System.out.println(group[i].fName);
+			if (firstName.equals(group[i].fName)) {
+				group[i].address = null;
+				group[i].city = null;
+				group[i].email = null;
+				group[i].fName = null;
+				group[i].lName = null;
+				group[i].pNumber = 0;
+				group[i].state = null;
+				group[i].zip = 0;
+				System.out.println("Deleted..!!");
+			}
+		}
+		if (flag == 0) {
+			System.out.println("Couldn't Find it!");
+		}
 	}
 
 	public static void searchPerson() {
